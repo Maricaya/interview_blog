@@ -4,6 +4,7 @@ https://juejin.im/post/6881431951702491143
 2. webpack 编译优化/打包优化
 3. vuex 原理
 4. 封装 ajax 
+    https://github.com/Hansen-hjs/my-note/blob/master/JavaScript/js/ajax.js
 webpack
     - tree shaking
     - https://juejin.im/post/6844903998634328072#heading-8
