@@ -50,12 +50,74 @@ console.log(selectionSort(b))
 
 /*
 * 3. 归并排序
-*
+*  分为两半 mid = Math.floor(arr.length / 2)
+*  如果 mid < 1 终止循环
+*   递归排
+*     左边 arr.slice(0, mid) 右边 arr.slice(mid)
+*   合并两个有序数组
  */
+function merge (left, right) {
+  const result = []
+  let i = 0, j = 0
+  while (left.length > i && right.length > j) {
+    if (left[i] < right[j]) {
+      result.push(left[i])
+      i++
+    } else {
+      result.push(right[j])
+      j++
+    }
+  }
+  if (i < left.length) {
+    result.push(...left.slice(i))
+  } else {
+    result.push(...right.slice(j))
+  }
+  return result
+}
 
+function mergeSort (arr) {
+  let mid = Math.floor(arr.length / 2)
+  if (mid < 1) {
+    return arr
+  }
+  let left = mergeSort(arr.slice(0, mid))
+  let right = mergeSort(arr.slice(mid))
+  return merge(left, right)
+}
+
+const c = [5, 6, 1, 2, 99, 9]
+console.log(mergeSort(c))
+/*
+* * 4. 快速排序
+* 随机取一个中间值
+*   大于它的排在左边，小于它的排在右边
+*   左右递归排序
+* */
+function partition(array, start, end) {
+  let index = Math.floor(Math.random()*(end -start + 1) + start)
+  swap(array, index, end)
+  let pivot = array[end]
+  let j = start
+  for (let i = start; i <= end; i++) {
+    if (array[i] <= pivot) {
+      swap(array, i, j)
+      j++
+    }
+  }
+  return j - 1
+}
+function quickSort(arr, start = 0, end = arr.length - 1) {
+  if (end - start < 1) return arr
+  let pivotIndex = partition(arr, start, end)
+  quickSort(arr, start, pivotIndex - 1)
+  quickSort(arr, pivotIndex, end)
+  return arr
+}
+const d = [5, 6, 1, 2, 99, 9]
+console.log(quickSort(d))
 
 /*
-* 4. 快速排序
 * 5. 冒泡排序
 * 6. 堆排序
 * */

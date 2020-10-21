@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// j 当前为 i 的第一个数
+
 // 283. Move Zeroes
 // https://leetcode.com/problems/move-zeroes/description/
 //
