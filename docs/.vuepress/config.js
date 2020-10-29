@@ -29,7 +29,8 @@ module.exports = {
         {
           title: '异步',
           children: [
-            'promise/ajax'
+            'promise/ajax',
+            'promise/promise',
           ]
         },
         {
@@ -42,7 +43,8 @@ module.exports = {
           title: 'Vue',
           children: [
             'vue/template',
-            'vue/model'
+            'vue/model',
+            'vue/router',
           ]
         },
         {

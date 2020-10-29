@@ -14,7 +14,7 @@ sidebarDepth: 3
 
 相当于我们编写如下 render 函数：
 ```js
-render: function (createElement) {
+render = function (createElement) {
   return createElement('div', {
      attrs: {
         id: 'app'
@@ -49,7 +49,7 @@ AST 元素节点总共有 3 种类型，
 
  Vue 2.0 相比 Vue 1.0 最大的升级就是利用了 Virtual DOM。因此在分析 createElement 的实现前，我们先了解一下 Virtual DOM 的概念。
 
-所谓渲染器，简单的说就是将 Virtual DOM 渲染成特定平台下真实 DOM 的工具(就是一个函数，通常叫 render)，渲染器的工作流程分为两个阶段：mount 和 patch，如果旧的 VNode 存在，则会使用新的 VNode 与旧的 VNode 进行对比，试图以最小的资源开销完成 DOM 的更新，这个过程就叫 patch，或“打补丁”。如果旧的 VNode 不存在，则直接将新的 VNode 挂载成全新的 DOM，这个过程叫做 mount。
+所谓渲染器，简单地说就是将 Virtual DOM 渲染成特定平台下真实 DOM 的工具(就是一个函数，通常叫 render)，渲染器的工作流程分为两个阶段：mount 和 patch，如果旧的 VNode 存在，则会使用新的 VNode 与旧的 VNode 进行对比，试图以最小地资源开销完成 DOM 的更新，这个过程就叫 patch，或“打补丁”。如果旧的 VNode 不存在，则直接将新的 VNode 挂载成全新的 DOM，这个过程叫做 mount。
 
  Virtual DOM 除了它的数据结构的定义，
  映射到真实的 DOM 实际上要经历 VNode 的 create、diff、patch 等过程。
@@ -110,7 +110,7 @@ https://www.zhihu.com/question/61064119/answer/766607894?utm_source=wechat_sessi
 	虚拟 DOM 会优化为一次添加 1000 个。
 
 - 减少 DOM 操作的范围
-虚拟 DOM 借助 DOM diff 可以把多余的操作省掉。
+虚拟 DOM 借助 DOM diff 可以把多余地操作省掉。
 比如你添加了 1000 个节点，其中 990 个是原有节点，只有 10 个是新增的。
 虚拟 DOM 只会添加 10 个。
 
