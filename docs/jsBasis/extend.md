@@ -3,6 +3,8 @@ sidebarDepth: 3
 ---
 # 继承
 // https://juejin.im/post/6844904116552990727#heading-16
+
+[第 7 期：ES5/ES6 的继承除了写法以外还有什么区别？](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/20)
 ## ES5 继承
 ```js
 // 父类
@@ -34,9 +36,6 @@ Child.prototype.constructor = Child
  - 由于所有Child实例原型都指向同一个Parent实例,
    因此对某个Child实例的父类引用类型变量修改会影响所有的Child实例
  - 在创建子类实例时无法向父类构造传参, 即没有实现super()的功能
-
-
-
 
 ###  构造函数继承
  构造函数继承，即在子类的构造函数中执行父类的构造函数，并为其绑定子类的this，让父类的构造函数把成员属性和方法都挂到子类的this上去，这样既能避免实例之间共享一个原型实例，又能向父类构造方法传参

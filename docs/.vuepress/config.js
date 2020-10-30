@@ -1,10 +1,10 @@
 module.exports = {
   title: 'blog',
   description: '系统性学习，打造完善的知识体系',
-  base: '/blog/',
+  base: '/docs/',
   themeConfig: {
     lastUpdated: 'Last Updated',
-    sidebarDepth: 0,
+    sidebarDepth: 2,
     nav: [
       {text: '文章目录', link: '/'},
       // {text: 'github', link: 'https://github.com/ConardLi'},
@@ -13,17 +13,12 @@ module.exports = {
       '/': [
         '',
         {
-          title: '原型链',
-          children: [
-            'prototype/chain',
-            'prototype/extend'
-          ]
-        },
-        {
           title: 'JS 基础',
           children: [
             'jsBasis/deepClone',
-            'jsBasis/throttle'
+            'jsBasis/throttle',
+            'jsBasis/chain',
+            'jsBasis/extend'
           ]
         },
         {
