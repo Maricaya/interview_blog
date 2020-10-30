@@ -13,17 +13,17 @@ module.exports = {
       '/': [
         '',
         {
-          // collapsable: true,
-          title: '函数式编程',
-          children: [
-            'functional/currify'
-          ]
-        },
-        {
           title: '原型链',
           children: [
             'prototype/chain',
             'prototype/extend'
+          ]
+        },
+        {
+          title: 'JS 基础',
+          children: [
+            'jsBasis/deepClone',
+            'jsBasis/throttle'
           ]
         },
         {
@@ -40,11 +40,17 @@ module.exports = {
           ]
         },
         {
+          title: '函数式编程',
+          children: [
+            'functional/currify'
+          ]
+        },
+        {
           title: 'Vue',
           children: [
-            'vue/template',
-            'vue/model',
-            'vue/router',
+            'vueBasis/template',
+            'vueBasis/model',
+            'vueBasis/router',
           ]
         },
         {
