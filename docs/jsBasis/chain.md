@@ -10,14 +10,14 @@ sidebarDepth: 3
   var obj = {};
   obj.__proto__ = fn.prototype;
   fn.call(obj, 'x'); // 生成的临时对象作为 this 调用 fn
-  return this // 把 fn 的返回值作为 this，返回出去
+  return obj // 把 fn 的返回值作为 this，返回出去
 ```
 new 会重写 this，所以我们在 bind 中写不写this都一样
 ```js
 function objectFactory(father, ...rest) {
   // let result = {}
   // result.__proto__ = father.prototype;
-  // 这两句话可以用一句代替 -> object.create()
+  // 这两句话可以用一句代替 -> object.create(father.prototype)
 
   // 方法创建一个新对象，使用现有的对象来提供新创建的对象的
   let result = Object.create(father.prototype)
@@ -36,9 +36,9 @@ function objectFactory(father, ...rest) {
 #### call
 ```js
 // func.call(asThis, args)
-Function.prototype.myCall = function (asThis, ...args) {
+Function.prototype.myCall = function (asThis = window, ...args) {
   const fn = Symbol('fn')        // 声明一个独有的Symbol属性, 防止fn覆盖已有属性
-  asThis = asThis || window // 如果没有传入this，默认绑定window
+  // asThis = asThis || window // 如果没有传入this，默认绑定window
   asThis[fn] = this // this指向调用call的对象,即我们要改变this指向的函数
   const result = asThis[fn](...args) // 执行当前函数
   delete asThis[fn] // 删除 fn 属性, 不更改传入的值
@@ -49,15 +49,56 @@ Function.prototype.myCall = function (asThis, ...args) {
 ```js
 // func.apply(asThis, [argsArray])
 Function.prototype.myApply = function (asThis, args) {
-  const fn = Symbol('fn')        // 声明一个独有的Symbol属性, 防止fn覆盖已有属性
-  asThis = asThis || window // 如果没有传入this，默认绑定window
-  asThis[fn] = this // this指向调用call的对象,即我们要改变this指向的函数
-  const result = asThis[fn](...args) // 执行当前函数
-  delete asThis[fn] // 删除 fn 属性, 不更改传入的值
-  return result
+  // 和 call 一样
 }
 ```
 #### bind
+##### 1. bind 最简单实现
+```js
+ function bind (asThis) {
+    const fn = this
+    return function() {
+        return fn.call(asThis)
+    }
+}
+```
+##### 2. 绑定参数
+```js
+function bind (asThis, ...args) {
+    const fn = this
+    return function(...arg2) {
+        return fn.call(asThis, ...args, ...arg2)
+    }
+}
+```
+
+##### 3. 支持 new 
+
+**是不是用 new 调用的?**
+    如果是 new 调用的，new 会传进来一个临时对象 temp，作为 this，要使用 new 的 this
+      怎么知道一个函数是不是被 new 调用的？
+```js
+let fn = function() {console.log(this)}
+  fn() // this => Window
+  new fn() // this => fn{}
+```
+当前函数 是不是 `resultFn` 构造出来的
+- 是  - 返回 `this`
+- 不是 - 返回 `asThis`
+
+**new 做了什么？**
+当你写 new 的时候，实际上是写了 4 行代码：
+<!--
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call
+!-->
+```js
+var temp = {};
+temp.__proto__ = fn.prototype;
+fn.call(temp, 'x'); // 生成的临时对象作为 this 调用 fn -> temp('x')
+return temp // 把 fn 的返回值作为 this，返回出去
+```
+
+**完整ES6 bind**
 ```js
 // function.bind(asThis, arg1, arg2, ...)
 Function.prototype.myBind = function (asThis, ...args1) {
@@ -66,21 +107,21 @@ Function.prototype.myBind = function (asThis, ...args1) {
     throw new Error('只有函数才能调用 bind！')
   }
   function resultFn(...args2) {
-    /* 是不是用 new 调用的
-    如果是 new 调用的，new 会传进来一个临时对象 temp，作为 this，要使用 new 的 this
-      怎么知道一个函数是不是被 new 调用的？
+    // 是不是用 new 调用的，当前函数 是不是 resulFn 构造出来的
+    // instanceof -> 
+    /*
+        const myInstanceof = (target, origin) => {
+            while (target) {
+              if (target.__proto__ === origin.prototype) {
+                return true
+              }
+              target = target.__proto__
+            }
+            return false
+          }
+    */ 
 
-      let fn = function() {console.log(this)}
-      fn() // this => Window
-      new fn() // this => fn{}
-
-       => 当前函数 是不是 resultFn 构造出来的
-
-        是  - 返回 this
-        不是 - 返回asThis
-     */
-    return fn.apply(this instanceof resultFn ? this
-      : asThis, ...args1, ...args2)
+    return fn.call(this instanceof resultFn ? this: asThis, ...args1, ...args2)
   }
   // 绑定原型上的函数
   resultFn.prototype = fn.prototype;

@@ -1,7 +1,7 @@
 module.exports = {
   title: 'blog',
   description: '系统性学习，打造完善的知识体系',
-  base: '/docs/',
+  base: '/blog/',
   themeConfig: {
     lastUpdated: 'Last Updated',
     sidebarDepth: 2,
@@ -13,12 +13,18 @@ module.exports = {
       '/': [
         '',
         {
+          title: 'vue3 UI',
+          children: [
+            'vue3/intro'
+          ]
+        },
+        {
           title: 'JS 基础',
           children: [
-            'jsBasis/deepClone',
-            'jsBasis/throttle',
             'jsBasis/chain',
-            'jsBasis/extend'
+            'jsBasis/extend',
+            'jsBasis/deepClone',
+            'jsBasis/throttle'
           ]
         },
         {
@@ -26,6 +32,13 @@ module.exports = {
           children: [
             'promise/ajax',
             'promise/promise',
+          ]
+        },
+        {
+          title: 'webpack',
+          children: [
+            'webpackInfo/compile',
+            'webpackInfo/myWebpack'
           ]
         },
         {
@@ -53,7 +66,13 @@ module.exports = {
           children: [
             'ssr/intro'
           ]
-        }
+        },
+        {
+          title: 'react',
+          children: [
+            'forReact/fiber'
+          ]
+        },
       ]
     }
   },
