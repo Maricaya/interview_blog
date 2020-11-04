@@ -3,6 +3,23 @@ sidebarDepth: 3
 ---
 # vue3 项目介绍
 
+## [自定义块](https://vue-loader.vuejs.org/zh/guide/custom-blocks.html)
+
+## 自定义指令
+v-click-outside
+
+## 响应式 API
+reactive、readonly、ref、watchEffect、
+
+## 组合式 API
+setup
+Provide / Inject
+生命钩子 onX
+
+## 内置组件
+component、slot、teleport
+
+
 ## 组件库设计有什么原则？
 
 ## 按需加载
@@ -161,7 +178,6 @@ exports.build = series(compile, copyfont);
 这样每次新增组件，就不用手动去引入新增组建的样式了
 
 `cp-cli packages/theme-chalk/lib lib/theme-chalk`
-
 ## 多种模块
 
 - `UMD`：`UMD` 版本可以通过 `<script>` 标签直接用在浏览器中。
@@ -192,6 +208,8 @@ https://juejin.im/post/6847902225377787918
 ### tsconfig 的配置
 
 ### 自动构建命令
+新建文件、自动发布
+
 #### 新建文件
 ```bash
 make new <component-name> [中文] 这个命令
@@ -209,6 +227,7 @@ new.js脚本主要做了下面几件事：
 
 所以当我们要在 element 架构上，新建一个 elect-bill 组件
 只要执行 make new elect-bill 电子账号，然后不用配置，就可以直接去开发了
+
 #### 自动发布
 
 ### 版本号

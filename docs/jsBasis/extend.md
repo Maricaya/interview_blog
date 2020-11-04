@@ -82,8 +82,8 @@ function Child4() {
   // 构造函数继承
   Parent.call(this, 'zhangsan')
 }
-//原型链继承
-Child.prototype = Parent.prototype  //将`指向父类实例`改为`指向父类原型`
+// 原型链继承
+// Child.prototype = Parent.prototype  //将`指向父类实例`改为`指向父类原型`
 
 // 但这种方式存在一个问题，由于子类原型和父类原型指向同一个对象，
 // 我们对子类原型的操作会影响到父类原型，
@@ -92,7 +92,7 @@ Child.prototype = Parent.prototype  //将`指向父类实例`改为`指向父类
 // 那么会导致Parent.prototype也增加或被覆盖一个getName()方法，
 // 为了解决这个问题，我们给Parent.prototype做一个浅拷贝
 
-Child4.prototype = Object.create(Parent)  
+Child4.prototype = Object.create(Parent.prototype)  
 /*
     Object.create = function (obj) {
         var B={};

@@ -15,7 +15,9 @@ module.exports = {
         {
           title: 'vue3 UI',
           children: [
-            'vue3/intro'
+            'vue3/new',
+            'vue3/intro',
+            'vue3/big'
           ]
         },
         {
@@ -24,14 +26,14 @@ module.exports = {
             'jsBasis/chain',
             'jsBasis/extend',
             'jsBasis/deepClone',
-            'jsBasis/throttle'
+            'jsBasis/throttle',
+            'jsBasis/promise'
           ]
         },
         {
-          title: '异步',
+          title: 'ajax & jsonp',
           children: [
-            'promise/ajax',
-            'promise/promise',
+            'ajax/ajax',
           ]
         },
         {
@@ -39,6 +41,24 @@ module.exports = {
           children: [
             'webpackInfo/compile',
             'webpackInfo/myWebpack'
+          ]
+        },
+        {
+          title: 'http',
+          children: [
+            'http/cache'
+          ]
+        },
+        {
+          title: '浏览器原理',
+          children: [
+            'http/cache'
+          ]
+        },
+        {
+          title: '安全',
+          children: [
+            'safe/csrf'
           ]
         },
         {

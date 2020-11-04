@@ -123,7 +123,6 @@ vue3的优化：https://zhuanlan.zhihu.com/p/150732926
 1、跳过静态内容，只对比动态内容。
 2、vue3
         vdom 新增字段 PatchFlags，记录哪些是动态节点，以及为什么它是动态的
-             dynamicChildren，记录所有的动态节点
 
 
 ## 手写 template 

@@ -269,23 +269,27 @@ class DeepClone {
             if (this.cache.has(source)) {
                 return this.cache.get(source)
             }
-            let dist = new Object()
             if (source instanceof Array) {
-                dist = new Array()
+                dist = []
             } else if (source instanceof Function) {
                 dist = function () {
                     return source.call(this, ...arguments)
                 }
             } else if (source instanceof RegExp) {
-                return new RegExp()
+                dist = new RegExp()
             } else if (source instanceof Date) {
-                return new Date(source)
-            }
+                dist = new Date(source)
+            } else {
+                let dist = {}
+            }     
             this.cache.set(source, dist)
-            Object.keys(source).map(key => {
-                dist[key] = this.clone(source[key])
-            })
-
+          
+            for(let key in target){
+                  // 过滤掉原型身上的属性
+                 if (target.hasOwnProperty(key)) {
+                     dist[key] = deepClone(target[key], cache);
+                 }
+             }
             return dist
         }
         return source

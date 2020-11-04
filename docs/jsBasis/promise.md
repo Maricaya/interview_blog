@@ -109,13 +109,13 @@ sidebarDepth: 3
 
 ## then方法异步调用
 
-如下面的代码：输入顺序是：`1、2、ConardLi`
+如下面的代码：输入顺序是：`1、2、cxl`
 
 ```js
 console.log(1);
 
 let promise = new Promise((resolve, reject) => {
-  resolve('ConardLi');
+  resolve('cxl');
 });
 
 promise.then((value) => {
@@ -143,23 +143,23 @@ console.log(2);
         case FULFILLED:
           setTimeout(() => {
             onFulfilled(this.value);
-          }, 0);
+          });
           break;
         case REJECTED:
           setTimeout(() => {
             onRejected(this.reason);
-          }, 0);
+          });
           break;
         case PENDING:
           this.onFulfilledCallbacks.push(() => {
             setTimeout(() => {
               onFulfilled(this.value);
-            }, 0);
+            });
           })
           this.onRejectedCallbacks.push(() => {
             setTimeout(() => {
               onRejected(this.reason);
-            }, 0);
+            });
           })
           break;
       }
@@ -265,11 +265,10 @@ MyPromise.prototype.finally = function(fn) {
 
 ## Promise.resolve
 
-
 `Promise.resolve`用来生成一个直接处于`FULFILLED`状态的Promise。
 
 ```js
-MyPromise.reject = function(value) {
+MyPromise.resolve = function(value) {
   return new MyPromise((resolve, reject) => {
     resolve(value);
   });
@@ -303,8 +302,9 @@ MyPromise.reject = function(reason) {
           let index = 0;
           for (let i = 0; i < promises.length; i++) {
             promises[i].then(data => {
-              result[i] = data;
-              if (++index === promises.length) {
+              result[i] = data; // 存起来
+              if (index === promises.length) {
+                index++
                 resolve(result);
               }
             }, err => {
@@ -329,7 +329,6 @@ MyPromise.reject = function(reason) {
         if (promises.length === 0) {
           resolve();
         } else {
-          let index = 0;
           for (let i = 0; i < promises.length; i++) {
             promises[i].then(data => {
               resolve(data);
