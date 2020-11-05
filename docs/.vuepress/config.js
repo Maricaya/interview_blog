@@ -1,7 +1,7 @@
 module.exports = {
   title: 'blog',
   description: '系统性学习，打造完善的知识体系',
-  base: '/blog/',
+  base: '/interview_blog/',
   themeConfig: {
     lastUpdated: 'Last Updated',
     sidebarDepth: 2,
@@ -27,7 +27,15 @@ module.exports = {
             'jsBasis/extend',
             'jsBasis/deepClone',
             'jsBasis/throttle',
-            'jsBasis/promise'
+            'jsBasis/promise',
+            'jsBasis/cros',
+            'jsBasis/module'
+          ]
+        },
+        {
+          title: 'TypeScript',
+          children: [
+            'typescript/T',
           ]
         },
         {
@@ -52,7 +60,7 @@ module.exports = {
         {
           title: '浏览器原理',
           children: [
-            'http/cache'
+            'chrome/gc'
           ]
         },
         {
@@ -85,6 +93,13 @@ module.exports = {
           title: 'SSR',
           children: [
             'ssr/intro'
+          ]
+        },
+        {
+          title: 'CSS',
+          children: [
+            'css/bfc',
+            'css/flex'
           ]
         },
         {
