@@ -48,7 +48,8 @@ module.exports = {
           title: 'webpack',
           children: [
             'webpackInfo/compile',
-            'webpackInfo/myWebpack'
+            'webpackInfo/myWebpack',
+            'webpackInfo/babel',
           ]
         },
         {

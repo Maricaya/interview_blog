@@ -1,5 +1,5 @@
 rm -rf docs/.vuepress/dist &&
-yarn docs:build &&
+yarn build &&
 cd docs/.vuepress/dist &&
 git init &&
 git config user.email 915270549@qq.com &&
