@@ -3,7 +3,9 @@ sidebarDepth: 3
 ---
 # AST、Babel、依赖
 
-# 先从 babel 说起
+[地址](https://github.com/Maricaya/my-babel-demo)
+
+## 先从 babel 说起
 把es6 代码转换成 es5代码
 ## 原理
 1. parse 把代码 code 变成 AST
