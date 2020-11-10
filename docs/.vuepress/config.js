@@ -61,7 +61,8 @@ module.exports = {
         {
           title: '浏览器原理',
           children: [
-            'chrome/gc'
+            'chrome/gc',
+            'chrome/render'
           ]
         },
         {
@@ -88,6 +89,7 @@ module.exports = {
             'vueBasis/template',
             'vueBasis/model',
             'vueBasis/router',
+            'vueBasis/asyncComponent'
           ]
         },
         {

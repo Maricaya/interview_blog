@@ -13,7 +13,7 @@ https://github.com/su37josephxia/vue3-study/tree/master/demo/reactivity-demo
 
     - getter
      
-        - 「 依赖收集」的目的是将观察者 Watcher 对象存放到当前闭包中的订阅者 Dep 的 subs 中。 形成如下所示的这样一个关系。
+        - 「依赖收集」的目的是将观察者 Watcher 对象存放到当前闭包中的订阅者 Dep 的 subs 中。 形成如下所示的这样一个关系。
     ![](./getter.png)
     - setter
    
