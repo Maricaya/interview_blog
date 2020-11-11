@@ -148,15 +148,36 @@ module.exports = getPath;
 **- 所以ElementUI的样式打包，并不是用webpack的，是用了gulp，基于工作流去处理样式。**
 
 我们看看Element如何结合gulp去使用
-> gulp vs webpack
-> webpack 为大型 SPA 而生的，模块处理路线。而如果需要将图片，样式，字体等所有静态资源全部打包
-> gulp 对大量源文件进行流式处理
-> rollup 只做一件事，打包 js。构建一个库
+
+### gulp vs webpack
+
+
+- [gulp](https://github.com/Platform-CUF/use-gulp) 对大量源文件进行流式处理
+    
+    - 易于使用：采用代码优于配置策略，gulp让简单的事情继续简单，复杂的任务变得可管理。
+    
+    - 高效：通过利用node.js强大的流，不需要往磁盘写中间文件，可以更快地完成构建。
+    
+    - 高质量：gulp严格的插件指导方针，确保插件简单并且按你期望的方式工作。
+    
+    - 易于学习：通过把API降到最少，你能在很短的时间内学会gulp。构建工作就像你设想的一样：是一系列流管道。
+
+- webpack & rollup javascript模块打包方案(方案+工具+插件)，
+    
+    - webpack 为大型 SPA 而生的，模块处理路线。而如果需要将图片，样式，字体等所有静态资源全部打包
+        - 是模块化管理工具和打包工具。
+        - 通过 loader 的转换，任何形式的资源都可以视作模块，比如 CommonJs 模块、AMD 模块、ES6 模块、CSS、图片等。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载
+    
+    - [rollup](https://www.rollupjs.com/) 只做一件事，打包 js。构建一个库. 
+        - 是下一代 ES6 模块化工具，它最大的亮点是利用 ES6 模块设计，生成更简洁、更简单的代码。尽可能高效地构建出能够直接被其它 JavaScript 库引用的模块
+        -  基于权衡，Rollup 目前还不支持）和模块的热更新（HMR）
+        -  一般而言，对于应用使用 Webpack，对于类库使用 Rollup；需要代码拆分(Code Splitting)，或者很多静态资源需要处理，再或者构建的项目需要引入很多 CommonJS 模块的依赖时，使用 webpack。代码库是基于 ES6 模块，而且希望代码能够被其他人直接使用，使用 Rollup
+        -  Rollup 与 Webpack 有这不同的用途，因此会共同存在，并相互支持
+        -  React 已经将构建工具从 Webpack 换成了 Rollup
 
 
 ```js
 'use strict';
-
 const { series, src, dest } = require('gulp');
 const sass = require('gulp-sass'); // 编译gulp工具
 const autoprefixer = require('gulp-autoprefixer');// 添加厂商名字工具
