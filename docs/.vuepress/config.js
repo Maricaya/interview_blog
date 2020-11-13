@@ -29,7 +29,9 @@ module.exports = {
             'jsBasis/throttle',
             'jsBasis/promise',
             'jsBasis/cros',
-            'jsBasis/module'
+            'jsBasis/module',
+            'jsBasis/flatten',
+            'jsBasis/promiseSchedule'
           ]
         },
         {

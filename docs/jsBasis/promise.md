@@ -303,8 +303,8 @@ MyPromise.reject = function(reason) {
           for (let i = 0; i < promises.length; i++) {
             promises[i].then(data => {
               result[i] = data; // 存起来
+              index++
               if (index === promises.length) {
-                index++
                 resolve(result);
               }
             }, err => {

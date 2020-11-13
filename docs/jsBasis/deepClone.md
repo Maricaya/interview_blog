@@ -303,3 +303,40 @@ console.log(a2)
 module.exports = DeepClone
 ```
 
+## 面试中写这些就行
+
+```js
+// instanceof Object
+// 递归拷贝所有 key，除了原型链上的
+// Array {}
+class deepClone {
+  constructor() {
+    this.cache = new Map()
+  }
+  clone (source) {
+    if (source instanceof Object) {
+      if (this.cache.has(source)) {
+        return this.cache.get(source)
+      }
+      let dist = {}
+      if (source instanceof Array) {
+        dist = []
+      }
+      else if (source instanceof Function) {
+        dist = function () {
+          return source.apply(this, Array.from(arguments))
+        }
+      }
+      this.cache.set(source, dist)
+      for (const sourceKey in source) {
+        if (source.hasOwnProperty(sourceKey)) {
+          dist[sourceKey] = this.clone(source[sourceKey])
+        }
+      }
+      return dist
+    }
+    return source
+  }
+}
+```
+
