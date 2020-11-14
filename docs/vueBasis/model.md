@@ -100,7 +100,7 @@ https://github.com/su37josephxia/vue3-study/tree/master/demo/reactivity-demo
     // })
     Object.defineProperty(data, "value", {
       set: function (val) {
-        render()
+        render(val)
       },
       get: function () {
         return input.value;
@@ -108,9 +108,9 @@ https://github.com/su37josephxia/vue3-study/tree/master/demo/reactivity-demo
     });
     input.onkeyup = function (e) {
       data.value = e.target.value;
-      // changeName[name] = data.value
+      // changeName.value = e.target.value
     };
-    function render () {
+    function render (val) {
       text.innerHTML = val;
       input.value = val;
     }
