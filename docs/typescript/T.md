@@ -30,7 +30,8 @@ let myIdentity: <T>(arg: T) => T = identity;
 ```
 
 ### 泛型类
-泛型类看上去与泛型接口差不多。 泛型类使用（ <>）括起泛型类型，跟在类名后面。
+泛型类看上去与泛型接口差不多。 泛型类使用（<>）括起泛型类型，跟在类名后面。
+
 ```ts
 class GenericNumber<T> {
     zeroValue: T;

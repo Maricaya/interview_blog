@@ -177,7 +177,7 @@ function collectCodeAndDeps(filepath: string) {
     -   有的循环依赖是有问题的，有的循环依赖是没有问题的
     -   所有最好别用循环依赖，以防万一
 
-# 总结
+## 总结
 - AST 相关
     1. parse 把代码 code 变成 AST
     2. traverse 遍历 AST 进行修改
@@ -210,3 +210,22 @@ function collectCodeAndDeps(filepath: string) {
        如果要解决API层面的问题，需要使用垫片。比如常见的有babel-polyfill、babel-runtime 和 babel-plugin-transform-runtime。
        
      
+
+# polyfill
+https://www.zhihu.com/question/49382420
+
+- Babel 是处于构建时（也就是传统Java等语言的编译时），「转换syntax层语法」
+
+- 转译出来的结果在默认情况下并不包括 ES6 对运行时的扩展，
+    - builtins（内建，包括 Promise、Set、Map 等）
+    - 内建类型上的原型扩展（如 ES6 对 Array、Object、String 等内建类型原型上的扩展）
+    - Regenerator（用于generators / yield）等都不包括在内。
+
+总结：
+babel-runtime 库，
+`polyfill`： 是看你的项目所需要的运行的浏览器环境决定的,不是必须的Babel只是转换syntax层语法,所有需要`@babel/ployfill` 来处理API兼容,又因为 `ployfill` 体积太大，
+
+所以通过 `preset` 的 useBuiltIns 来实现按需加载。
+  
+再接着为了满足 npm 组件开发的需要 出现了 `@babel/runtime` 来做隔离。
+ `babel-plugin-transform-runtime`
