@@ -57,7 +57,8 @@ module.exports = {
         {
           title: 'http',
           children: [
-            'http/cache'
+            'http/cache',
+            'http/statusCode'
           ]
         },
         {
