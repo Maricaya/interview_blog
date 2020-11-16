@@ -91,7 +91,8 @@ module.exports = {
             'vueBasis/template',
             'vueBasis/model',
             'vueBasis/router',
-            'vueBasis/asyncComponent'
+            'vueBasis/asyncComponent',
+            'vueBasis/nextTick'
           ]
         },
         {
