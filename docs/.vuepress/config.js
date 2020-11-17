@@ -106,7 +106,8 @@ module.exports = {
           title: 'CSS',
           children: [
             'css/bfc',
-            'css/flex'
+            'css/flex',
+            'css/normal'
           ]
         },
         {
