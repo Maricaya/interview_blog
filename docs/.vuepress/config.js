@@ -97,6 +97,12 @@ module.exports = {
           ]
         },
         {
+          title: '算法',
+          children: [
+            'algorithm/backtracking'
+          ]
+        },
+        {
           title: 'SSR',
           children: [
             'ssr/intro'
