@@ -19,3 +19,7 @@ https://zzzmj.github.io/demo/two-column-layout/index.html
     - 右盒子
         -  overflow: hidden/scroll/auto (只要不是 visible 就触发 BFC)
         - display: block;
+
+## 居中
+
+## 动画 css vs js
