@@ -19,33 +19,30 @@ function* testG() {
 }
 
 function asyncToGenerator(genFunction) {
-    return function () {
-       const gen = genFunction.apply(this, arguments);
-       return new Promise((resolve, reject) => {
-         step(() => gen.next());
-
-         function step(nextFunction) {
-           let next;
-           try {
-             next = nextFunction();
-           } catch(e) {
-             return reject(e);
-           }
-           if (next.done) {
-             return resolve(next.value);
-           } else {
-             return Promise.resolve(next.value).then((data) => {
-               step(() => gen.next(data));
-             }, (e) => {
-               step(() => gen.throw(e));
-             });
-           }
-         }
-     });
-    }
-  }
+    const gen = genFunction.apply(this, arguments);
+    return new Promise((resolve, reject) => {
+        step(() => gen.next());
+        function step(nextFunction) {
+            let next;
+            try {
+                next = nextFunction();
+            } catch(e) {
+                return reject(e);
+            }
+            if (next.done) {
+                return resolve(next.value);
+            } else {
+                return Promise.resolve(next.value).then((data) => {
+                step(() => gen.next(data));
+                }, (e) => {
+                step(() => gen.throw(e));
+                });
+            }
+        }
+    });
+}
 
 const testGAsync = asyncToGenerator(testG)
-testGAsync().then(result => {
+testGAsync.then(result => {
   console.log(result)
 })
