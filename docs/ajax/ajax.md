@@ -87,6 +87,7 @@ function ajax({url, method, data, timeout}) {
 ```js
 function ajax({url, method, data, timeout, callback = 'callback'}) {
   return new Promise((resolve, reject) => {
+      let timer = null
       data.callback = callback
       const sendData = handleData(data)
       let script = document.createElement('script')
@@ -94,13 +95,21 @@ function ajax({url, method, data, timeout, callback = 'callback'}) {
       // https://photo.sina.cn/aj/index?page=1&cate=recommend&callback=callback
       document.body.appendChild(script)
       window[callback] = (value) => {
-        try {
-          resolve(value)
-        } catch (e) {
-          reject(e)
+        if (timeout) {
+          clearTimeout(timer)
         }
+        resolve(value)
         //移除script元素
         script.parentNode.removeChild(script)
+      }
+      
+      if (timeout) {
+        timer = setTimeout(() => {
+          reject('network err, timeout')        
+        }, timeout)
+      } 
+      script.onerror = function (e) { 
+        reject(e)
       }
   })
 }

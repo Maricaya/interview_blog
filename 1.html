@@ -8,9 +8,34 @@
 	<title>Document</title>
 </head>
 <body>
-<label for="abc"></label><input type="text" id="abc">
+	<label for="input"></label><input type="text" id="input">
+	<div id="text"></div>
 	<script>
-
+    const input = document.getElementById('input')
+    const text = document.getElementById('text')
+		let data = {value: ''}
+		Object.defineProperty(data, 'value', {
+		  set: function (val) {
+			  render(val)
+		  },
+			// get: function () {
+		  //   return input.value
+			// }
+		})
+    // let changeName = new Proxy(data, {
+    //   set(obj, name, value, receiver) {
+    //     obj[name] = value
+    //     render(value)
+    //   }
+    // })
+    input.onkeyup = function (e) {
+      data.value = e.target.value
+      // changeName.value = e.target.value
+    }
+    function render(val) {
+      text.innerText = val
+      // input.value = val
+    }
 	</script>
 </body>
 </html>
